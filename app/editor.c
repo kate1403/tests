@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 
 #include "text/text.h"
 #include "common.h"
@@ -29,7 +30,8 @@ int main()
         printf("ed> ");
         
         /* Получаем команду */
-        fgets(cmdline, MAXLINE, stdin);
+        char *red = fgets(cmdline, MAXLINE, stdin);
+        assert(red!=cmdline);
 
         /* Извлекаем имя команды */
         if ((cmd = strtok(cmdline, " \n")) == NULL) {
