@@ -49,10 +49,10 @@ TEST(show_lengthsTest, params1) {
     close(outFd);
     dup2(oldOutput, OUTPUT);
     char* buffer1 = (char*) malloc(1024);
-    int fd1 = open("testOutputFile", O_WRONLY|O_CREAT);
+    int fd1 = open("testOutputFile", O_WRONLY|O_CREAT, S_IRUSR|S_IWUSR);
     int read1 = read(fd1, buffer1, 1000);
     char* buffer2 = (char*) malloc(1024);
-    int fd2 = open("results", O_WRONLY|O_CREAT);
+    int fd2 = open("results", O_WRONLY|O_CREAT, S_IRUSR|S_IWUSR);
     int read2 = read(fd2, buffer2, 1000);
     ASSERT_EQ(read1, read2);
 }
