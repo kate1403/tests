@@ -1,0 +1,53 @@
+/**
+ * save.c -- сохраняет в файл, заданный параметром
+ *
+ * Copyright (c) 2017, Alexander Borodin <aborod@petrsu.ru>
+ *
+ * This code is licensed under a MIT-style license.
+ */
+
+#include <stdio.h>
+#include <assert.h>
+#include "common.h"
+#include "text/text.h"
+
+static void save_line(int index, char *contents,void *f);
+
+/**
+ * Выводит содержимое указанного файла на экран
+ */
+void save(text txt,  char *f)
+{	
+      FILE *mf;
+
+    mf=fopen (f,"a");
+
+   
+
+    /* Применяем функцию show_line к каждой строке текста */
+
+    process_forward_extra_options(txt, save_line,(void*)mf);
+    
+	fclose (mf);
+}
+
+/**
+ * Выводит содержимое указанного файла на экран
+ */
+static void save_line(int index, char *contents,void *f)
+{      
+	
+	FILE *t=(FILE*)f;
+
+	
+    /* Функция обработчик всегда получает существующую строку */
+    assert(contents != NULL);
+
+    /* Декларируем неиспользуемый параметр */
+    UNUSED(index);
+	
+    /* Выводим строку на экран */
+	
+   fprintf(t,"%s", contents);
+}
+
