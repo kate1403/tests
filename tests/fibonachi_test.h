@@ -42,7 +42,7 @@ TEST(showlengthsTest, params) {
 TEST(show_lengthsTest, params1) {
     char* filename = (char*)malloc(1024);
     sprintf(filename, "%s/params.input", "INPUTDIR");
-    int outFd = open("testOutputFile", O_WRONLY|O_CREAT);
+    int outFd = open("testOutputFile", O_WRONLY|O_CREAT, S_IRUSR|S_IWUSR);
     int oldOutput = dup(OUTPUT);
     dup2(outFd, OUTPUT);
     show_lengths(1,filename);
